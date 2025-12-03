@@ -82,6 +82,7 @@
 
 #include <clocale>
 
+#include <sofa/core/objectmodel/Base.h>
 
 using namespace sofa;
 
@@ -469,6 +470,19 @@ void ImGuiGUIEngine::startFrame(sofaglfw::SofaGLFWBaseGUI* baseGUI)
                 sofa::simulation::node::initRoot(baseGUI->getRootNode().get());
                 return;
             }
+
+            if (ImGui::MenuItem(ICON_FA_FOLDER_CLOSED " Save Snapshot"))
+            {
+                sofa::core::objectmodel::Base* b;
+                b->exportToJson();
+                return;
+            }
+
+            if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Load Snapshot"))
+            {
+                return;
+            }
+
             ImGui::Separator();
             if (ImGui::MenuItem("Exit"))
             {
